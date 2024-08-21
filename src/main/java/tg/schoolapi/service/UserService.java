@@ -127,7 +127,7 @@ public class UserService {
 
     }
 
-    public UserDTO atualizaUser(Long id, UserDTO userDTO){// atualiza somente os dados do usuario, sem ter que passar os dados do endereço
+    public UserDTO atualizaUser(Long id, UserDTO userDTO){
         if (userRepository.existsById(id)){
             userDTO.setId(id);
             UserEntity aux = userRepository.save(converteDTO(userDTO));

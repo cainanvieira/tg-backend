@@ -26,29 +26,20 @@ public class UserController {
         return this.injecao.consultaTodos();
     }
 
-    @PutMapping //recebo alguma coisa como parametro?
-    //chama a funcao igual no service
+    @PutMapping
     public List<UserDTO> alteraSenha(){
         return injecao.alteraSenha();
     }
 
-    @PatchMapping("/{id}") //passa o parametro
+    @PatchMapping("/password/{id}")
     public UserDTO atualizarSenhaId(@PathVariable Long id, @RequestBody UserDTO userDTO){
         UserDTO userDTO1 = injecao.atualizarSenhaId(id, userDTO);
         return userDTO1;
     }
-//    @PatchMapping("/{id}") //passa o parametro
-//    public UserDTO atualizaUser(@PathVariable Long id, @RequestBody UserDTO userDTO){
-//        UserDTO userDTO1 = injecao.atualizaUser(id, userDTO);
-//        return userDTO1;
-//    }
-//    @GetMapping({"/{id}"})
-//    public ClienteDTO consultaPorId(@PathVariable Long id) {
-//        return this.injecao.consultaPorId(id);
-//    }
-//
-//    @DeleteMapping({"/{id}"})
-//    public String remove(@PathVariable Long id) {
-//        return this.injecao.remove(id);
-//    }
+    @PatchMapping("/{id}")
+    public UserDTO updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO){
+        UserDTO userDTO1 = injecao.atualizaUser(id, userDTO);
+        return userDTO1;
+    }
+
 }

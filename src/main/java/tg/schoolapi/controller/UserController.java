@@ -11,34 +11,39 @@ import java.util.List;
 @RequestMapping({"/users"})
 public class UserController {
     @Autowired
-    UserService injecao;
+    UserService service;
 
     public UserController() {
     }
 
     @PostMapping
     public UserDTO insert(@RequestBody UserDTO userDTO) {
-        return this.injecao.insert(userDTO);
+        return this.service.insert(userDTO);
     }
 
     @GetMapping
     public List<UserDTO> consultaTodos() {
-        return this.injecao.consultaTodos();
+        return this.service.consultaTodos();
+    }
+
+    @GetMapping("/{id}")
+    public UserDTO searchForId(@PathVariable Long id) {
+        return this.service.searchForId(id);
     }
 
     @PutMapping
     public List<UserDTO> alteraSenha(){
-        return injecao.alteraSenha();
+        return service.alteraSenha();
     }
 
     @PatchMapping("/password/{id}")
     public UserDTO atualizarSenhaId(@PathVariable Long id, @RequestBody UserDTO userDTO){
-        UserDTO userDTO1 = injecao.atualizarSenhaId(id, userDTO);
+        UserDTO userDTO1 = service.atualizarSenhaId(id, userDTO);
         return userDTO1;
     }
     @PatchMapping("/{id}")
     public UserDTO updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO){
-        UserDTO userDTO1 = injecao.atualizaUser(id, userDTO);
+        UserDTO userDTO1 = service.atualizaUser(id, userDTO);
         return userDTO1;
     }
 

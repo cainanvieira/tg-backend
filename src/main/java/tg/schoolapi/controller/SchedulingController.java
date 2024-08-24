@@ -34,4 +34,10 @@ public class SchedulingController {
         return result;
     }
 
+    @DeleteMapping("/{id}")
+    public String update(@PathVariable Long id){
+        String result = service.deleteById(id);
+        return result;
+    }
+
 }

@@ -72,4 +72,13 @@ public class SchedulingService {
             return null;
         }
     }
+
+    public String deleteById(Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return "Item deletado com sucesso!";
+        } else {
+            throw new RuntimeException("Scheduling não encontrado com o ID: " + id);
+        }
+    }
 }

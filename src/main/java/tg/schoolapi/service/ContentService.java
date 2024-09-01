@@ -5,9 +5,8 @@ import org.springframework.stereotype.Service;
 import tg.schoolapi.model.dto.AddressDTO;
 import tg.schoolapi.model.dto.ContentDTO;
 import tg.schoolapi.model.dto.UserDTO;
-import tg.schoolapi.model.entity.AddressEntity;
-import tg.schoolapi.model.entity.ContentEntity;
-import tg.schoolapi.model.entity.UserEntity;
+import tg.schoolapi.model.entity.*;
+import tg.schoolapi.model.entity.SchedulingDTO;
 import tg.schoolapi.model.repository.AddressRepository;
 import tg.schoolapi.model.repository.ContentRepository;
 import tg.schoolapi.model.repository.UserRepository;
@@ -80,6 +79,21 @@ public class ContentService {
             return converteEntity(aux);
         }else {
             return null;
+        }
+    }
+
+    public ContentDTO searchForId(Long id) {
+        ContentEntity entity = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User não encontrado com o ID: " + id));
+        return converteEntity(entity);
+    }
+
+    public String deleteById(Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return "Item deletado com sucesso!";
+        } else {
+            throw new RuntimeException("Scheduling não encontrado com o ID: " + id);
         }
     }
 }

@@ -142,4 +142,13 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User não encontrado com o ID: " + id));
         return converteEntity(userEntity);
     }
+
+    public String deleteById(Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return "Item deletado com sucesso!";
+        } else {
+            throw new RuntimeException("Scheduling não encontrado com o ID: " + id);
+        }
+    }
 }

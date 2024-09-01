@@ -27,6 +27,10 @@ public class ContentController {
     public List<ContentDTO> consultaTodos() {
         return this.service.consultaTodos();
     }
+    @GetMapping("/{id}")
+    public ContentDTO consultaTodos(@PathVariable Long id) {
+        return this.service.searchForId(id);
+    }
 
     @PatchMapping("/{id}")
     public ContentDTO update(@PathVariable Long id, @RequestBody ContentDTO contentDTO){
@@ -34,4 +38,8 @@ public class ContentController {
         return result;
     }
 
-}
+    @DeleteMapping("/{id}")
+    public String update(@PathVariable Long id){
+        String result = service.deleteById(id);
+        return result;
+    }}

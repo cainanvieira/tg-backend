@@ -81,4 +81,10 @@ public class SchedulingService {
             throw new RuntimeException("Scheduling não encontrado com o ID: " + id);
         }
     }
+
+    public SchedulingDTO searchForId(Long id) {
+        SchedulingEntity entity = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User não encontrado com o ID: " + id));
+        return converteEntity(entity);
+    }
 }

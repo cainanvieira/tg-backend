@@ -6,7 +6,7 @@ import tg.schoolapi.model.repository.AddressRepository;
 import tg.schoolapi.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Sort;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,7 +65,7 @@ public class AddressService {
     }
 
     public List<AddressDTO> consultaTodos() {
-        List<AddressEntity> listaEntities = addressRepository.findAll();
+        List<AddressEntity> listaEntities = addressRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         return listaEntities.stream().map(this::converteAddressEntity).collect(Collectors.toList());
     }
 

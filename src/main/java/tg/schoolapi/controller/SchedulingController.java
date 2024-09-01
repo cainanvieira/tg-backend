@@ -28,6 +28,11 @@ public class SchedulingController {
         return this.service.consultaTodos();
     }
 
+    @GetMapping("/{id}")
+    public SchedulingDTO consultaPorId(@PathVariable Long id) {
+        return this.service.searchForId(id);
+    }
+
     @PatchMapping("/{id}")
     public SchedulingDTO update(@PathVariable Long id, @RequestBody SchedulingDTO schedulingDTO){
         SchedulingDTO result = service.update(id, schedulingDTO);

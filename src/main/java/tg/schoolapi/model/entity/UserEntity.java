@@ -39,7 +39,7 @@ UserEntity {
     )
     private String telefone;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco", referencedColumnName = "id")
     private AddressEntity endereco;
 
